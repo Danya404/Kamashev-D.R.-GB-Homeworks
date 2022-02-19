@@ -9,32 +9,23 @@ def separator(sep):
 # * в остальных случаях: <d> дн <h> час <m> мин <s> сек.
 
 
-def duration_sec(seconds: int):
-    print(seconds, 'сек')
+def duration(seconds: int):
+    if seconds < 60:
+        print(seconds, 'сек')
+    elif seconds < 3600:
+        print(f'{seconds // 60} мин, {seconds % 60} сек')
+    elif seconds < 86400:
+        print(f'{seconds // 3600} час, {seconds % 3600 // 60} мин, {seconds % 3600 % 60} сек')
+    else:
+        print(
+            f'{seconds // 86400} дн, {seconds % 86400 // 3600} час, {seconds % 86400 % 3600 // 60} мин, {seconds % 86400 % 3600 % 60} сек')
 
 
-def duration_min(seconds: int):
-    minutes = seconds // 60
-    print(minutes, 'мин', seconds, 'сек')
+duration(59)
+duration(365)
+duration(9999)
+duration(123456789)
 
-
-def duration_hrs(seconds: int):
-    hours = seconds // 3600
-    minutes = seconds // 60
-    print(hours, 'час', minutes, 'мин', seconds, 'сек')
-
-
-def duration_days(seconds: int):
-    days = seconds // 86400
-    hours = seconds // 3600
-    minutes = seconds // 60
-    print(days, 'дн', hours, 'час', minutes, 'мин', seconds, 'сек')
-
-
-duration_sec(59)
-duration_min(365)
-duration_hrs(9999)
-duration_days(123456789)
 separator('*')
 
 # 2. Создать список, состоящий из кубов нечётных чисел от 1 до 1000
@@ -65,9 +56,9 @@ separator('*')
 # Вывести эту фразу на экран отдельной строкой для каждого из чисел в интервале от 1 до 100:
 
 for i in range(1, 101):
-    if i % 10 == 1:
-        print(i, 'процент')
-    elif 10 < i < 20 or i % 10 in (0, 5, 6, 7, 8, 9):
+    if 10 < i < 20 or i % 10 in (0, 5, 6, 7, 8, 9):
         print(i, 'процентов')
+    elif i % 10 == 1:
+        print(i, 'процент')
     else:
         print(i, 'процента')
